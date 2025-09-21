@@ -6,7 +6,6 @@ import {
   MDBCardText,
   MDBCardImage,
   MDBBtn,
-  MDBRipple,
   MDBRow,
   MDBCol,
   
