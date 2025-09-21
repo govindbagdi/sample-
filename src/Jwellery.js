@@ -1,0 +1,64 @@
+import React, { useEffect, useState } from 'react';
+
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardImage,
+  MDBBtn,
+  MDBRipple,
+  MDBRow,
+  MDBCol,
+  
+} from 'mdb-react-ui-kit';
+import Footer from './Footer';
+
+ function Jwellery()
+  {
+    const [apidata,setData]=useState([])
+    useEffect(()=>{
+       fetch("https://fakestoreapi.com/products/category/jewelery").then((result)=>{
+           result.json().then((data)=>{
+                setData(data)
+           })
+       })
+    },[])
+  return (
+    <div>
+       <MDBRow className='row-cols-1 row-cols-md-3 g-4' style={{padding:"10px"}}>
+       {
+        apidata.map((item)=>
+           
+       <MDBCol>
+        <MDBCard className='h-100' style={{padding:"10px"}}>
+         <center>
+             <MDBCardImage
+            src={item.image}
+            alt='...'
+            position='top'
+            style={{width:"100px",height:"100px"}}
+          />
+         </center>
+          <MDBCardBody>
+            <MDBCardTitle style={{color:"red"}}>{item.title}</MDBCardTitle>
+             <MDBCardTitle style={{color:"green"}}>{item.price*85} Rs</MDBCardTitle>
+              <MDBCardTitle style={{color:"blue"}}>{item.category}</MDBCardTitle>
+            <MDBCardText>
+              {item.description.substring(0,100)}
+            </MDBCardText>
+            <MDBBtn style={{width:"130px",height:"36px"}}>View Details</MDBBtn>&nbsp;&nbsp;
+            <MDBBtn style={{width:"130px",height:"36px"}}>AddtoCart</MDBBtn>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol> 
+        )
+       }
+      
+    </MDBRow>
+    <Footer></Footer>
+    
+    </div>
+  );
+}
+export default Jwellery;
